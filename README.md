@@ -10,7 +10,7 @@ Hecho en React + Typescript + Vite.js
 
 [Link al demo](https://challenge-guess-pokemon-iguerra.vercel.app)
 
-### Para correr el proyecto
+## Para correr el proyecto
 
 - npm install
 - npm run dev

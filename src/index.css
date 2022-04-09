@@ -1,13 +1,21 @@
+.main-container {
+  position: relative;
+}
+
 .header {
   display: flex;
   align-items: center;
   height: 60px;
   padding: 0 1rem;
 
-  box-shadow: 0 3px 5px rgba(0,0,0,.25);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.25);
+  background-color: white;
 
   position: fixed;
+  top: 0;
   width: 100%;
+
+  z-index: 2;
 }
 
 main {
@@ -29,7 +37,7 @@ main {
 
   font-size: 13px;
 
-  box-shadow: 0 -3px 5px rgba(0,0,0,.25);
+  box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.25);
 }
 
 .main-title {
@@ -67,13 +75,38 @@ img {
 }
 
 .ml-1 {
-  margin-left: .5rem !important;
+  margin-left: 0.5rem;
+}
+
+.my-1 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem !important;
 }
 
 .nes-field.is-inline {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.results-container {
+  width: 250px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 768px) {
@@ -83,7 +116,7 @@ img {
 
   .input {
     width: 100%;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
 
   button.nes-btn {

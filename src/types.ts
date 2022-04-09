@@ -3,3 +3,8 @@ export interface Pokemon {
   name: string;
   image: string;
 }
+
+export interface GuessResults {
+  correct: number;
+  incorrect: number;
+}

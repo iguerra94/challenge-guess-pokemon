@@ -107,7 +107,7 @@ function App() {
 
         <h3>{pokemonIsDiscovered ? pokemonGuess?.name : ""}</h3>
 
-        <section className="my-1">
+        <section className="my-1 text-center">
           {userGuessedOk === null ? (
             <>{"Aquí se verá el resultado de la adivinanza"}</>
           ) : userGuessedOk === true ? (

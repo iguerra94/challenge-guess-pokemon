@@ -109,7 +109,15 @@ img {
   justify-content: space-between;
 }
 
+.text-center {
+  text-align: center;
+}
+
 @media screen and (max-width: 768px) {
+  .header {
+    font-size: 13px;
+  }
+
   .input-container {
     width: 100%;
   }

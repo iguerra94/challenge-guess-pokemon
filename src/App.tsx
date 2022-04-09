@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import {useEffect, useRef, useState} from "react";
 
 import api from "./api";
 import useLocalStorage from "./hooks/useLocalStorage";
-import { GuessResults, Pokemon } from "./types";
+import {GuessResults, Pokemon} from "./types";
 
 const initialValue: GuessResults = {
   correct: 0,
@@ -13,21 +13,21 @@ function App() {
   const pokemonInput = useRef<HTMLInputElement>(null);
   const pokemonImage = useRef<HTMLImageElement>(null);
 
-  const [guessResults, setGuessResults] = useLocalStorage(
-    "guess-results",
-    initialValue
-  );
+  const [guessResults, setGuessResults] = useLocalStorage("guess-results", initialValue);
 
   const [pokemonGuess, setPokemonGuess] = useState<Pokemon>();
   const [userGuessedOk, setUserGuessedOk] = useState<boolean | null>(null);
-  const [pokemonIsDiscovered, setPokemonIsDiscovered] =
-    useState<boolean>(false);
+  const [pokemonIsDiscovered, setPokemonIsDiscovered] = useState<boolean>(false);
   const [inputWithError, setInputWithError] = useState<boolean>(false);
 
   useEffect(() => {
     // set random pokemon guess
     api.random().then(setPokemonGuess);
   }, []);
+
+  const handleOnSubmit = (e: any) => {
+    e.preventDefault();
+  };
 
   const testUserGuess = () => {
     const $pokemonInput = pokemonInput.current!;
@@ -44,13 +44,11 @@ function App() {
 
     // set guess result
     const guessResult =
-      $pokemonInput.value.replace(/[^a-zA-Z]/g, "").toLowerCase() ===
-      pokemonGuess?.name;
+      $pokemonInput.value.replace(/[^a-zA-Z]/g, "").toLowerCase() === pokemonGuess?.name;
 
     setGuessResults((prevValue) => ({
       correct: guessResult === true ? prevValue.correct + 1 : prevValue.correct,
-      incorrect:
-        guessResult === false ? prevValue.incorrect + 1 : prevValue.incorrect,
+      incorrect: guessResult === false ? prevValue.incorrect + 1 : prevValue.incorrect,
     }));
 
     setUserGuessedOk(guessResult);
@@ -62,23 +60,19 @@ function App() {
   };
 
   const resetGame = () => {
+    // reset random pokemon guess
+    api.random().then(setPokemonGuess);
+
     setUserGuessedOk(null);
     setPokemonIsDiscovered(false);
     setInputWithError(false);
-
-    // reset random pokemon guess
-    api.random().then(setPokemonGuess);
   };
 
   return (
     <div className="main-container">
       {/* Header */}
       <header className="header">
-        <img
-          alt="Pokeball"
-          className="nes-avatar is-medium"
-          src="/assets/images/pokeball.png"
-        />
+        <img alt="Pokeball" className="nes-avatar is-medium" src="/assets/images/pokeball.png" />
         <span className="ml-1">Pokemon Guess Challenge</span>
       </header>
 
@@ -130,47 +124,35 @@ function App() {
         </section>
 
         <section className="form-wrapper">
-          <div className="nes-field is-inline form-container">
-            <div className="input-container">
-              <input
-                ref={pokemonInput}
-                required
-                className={`nes-input input ${
-                  inputWithError ? "is-error" : ""
-                }`}
-                disabled={pokemonIsDiscovered}
-                id="inline_field"
-                placeholder="Ingresa el pokemon..."
-                type="text"
-                onChange={handleInputChange}
-              />
-              {inputWithError ? (
-                <span className="nes-text is-error input-error">
-                  Debes ingresar un valor
-                </span>
-              ) : (
-                ""
-              )}
-            </div>
+          <form className="nes-field is-inline form-container" onSubmit={handleOnSubmit}>
+            {pokemonIsDiscovered === false ? (
+              <div className="input-container">
+                <input
+                  ref={pokemonInput}
+                  className={`nes-input input ${inputWithError ? "is-error" : ""}`}
+                  id="inline_field"
+                  placeholder="Ingresa el pokemon..."
+                  type="text"
+                  onChange={handleInputChange}
+                />
+                {inputWithError ? (
+                  <span className="nes-text is-error input-error">Debes ingresar un valor</span>
+                ) : (
+                  ""
+                )}
+              </div>
+            ) : null}
 
             {pokemonIsDiscovered ? (
-              <button
-                className="nes-btn is-error"
-                type="button"
-                onClick={resetGame}
-              >
+              <button className="nes-btn is-error" type="button" onClick={resetGame}>
                 Volver a jugar
               </button>
             ) : (
-              <button
-                className="nes-btn is-primary"
-                type="button"
-                onClick={testUserGuess}
-              >
+              <button className="nes-btn is-primary" type="submit" onClick={testUserGuess}>
                 Adivinar
               </button>
             )}
-          </div>
+          </form>
         </section>
       </main>
 

@@ -130,3 +130,9 @@ img {
     justify-content: center;
   }
 }
+
+@media screen and (max-height: 930px) {
+  main {
+    margin-top: 4rem;
+  }
+}

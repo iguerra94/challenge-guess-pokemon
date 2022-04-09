@@ -125,6 +125,8 @@ img {
   .input {
     width: 100%;
     margin-bottom: 0.5rem;
+
+    font-size: 13px;
   }
 
   button.nes-btn {

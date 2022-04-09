@@ -130,12 +130,34 @@ img {
   button.nes-btn {
     width: 100%;
     margin-top: 1rem;
+
+    font-size: 13px;
   }
 
   .nes-field.is-inline {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  .results-container {
+    font-size: 14px;
+  }
+
+  .main-title {
+    font-size: 24px;
+  }
+
+  .footer {
+    font-size: 11px;
+  }
+
+  .pokemon-name {
+    font-size: 15px;
+  }
+
+  .guess-result--container {
+    font-size: 13px;
   }
 }
 

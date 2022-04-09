@@ -105,9 +105,9 @@ function App() {
           src={pokemonGuess?.image}
         />
 
-        <h3>{pokemonIsDiscovered ? pokemonGuess?.name : ""}</h3>
+        <h3 className="pokemon-name">{pokemonIsDiscovered ? pokemonGuess?.name : ""}</h3>
 
-        <section className="my-1 text-center">
+        <section className="my-1 text-center guess-result--container">
           {userGuessedOk === null ? (
             <>{"Aquí se verá el resultado de la adivinanza"}</>
           ) : userGuessedOk === true ? (

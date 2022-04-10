@@ -63,11 +63,11 @@ function App() {
   };
 
   const resetGame = () => {
-    // reset random pokemon guess
-    api.random().then(setPokemonGuess);
-
     // reset input focus
     pokemonInput.current?.focus();
+
+    // reset random pokemon guess
+    api.random().then(setPokemonGuess);
 
     setUserGuessedOk(null);
     setPokemonIsDiscovered(false);

@@ -1,4 +1,5 @@
 import {useEffect, useRef, useState} from "react";
+import { flushSync } from "react-dom";
 
 import api from "./api";
 import useLocalStorage from "./hooks/useLocalStorage";
@@ -66,9 +67,11 @@ function App() {
     // reset random pokemon guess
     api.random().then(setPokemonGuess);
 
-    setUserGuessedOk(null);
-    setPokemonIsDiscovered(false);
-    setInputWithError(false);
+    flushSync(() => {
+      setUserGuessedOk(null);
+      setPokemonIsDiscovered(false);
+      setInputWithError(false);
+    });
 
     // reset input focus
     pokemonInput.current?.focus();

@@ -23,6 +23,9 @@ function App() {
   useEffect(() => {
     // set random pokemon guess
     api.random().then(setPokemonGuess);
+
+    // set input focus
+    pokemonInput.current?.focus();
   }, []);
 
   const handleOnSubmit = (e: any) => {
@@ -62,6 +65,9 @@ function App() {
   const resetGame = () => {
     // reset random pokemon guess
     api.random().then(setPokemonGuess);
+
+    // reset input focus
+    pokemonInput.current?.focus();
 
     setUserGuessedOk(null);
     setPokemonIsDiscovered(false);
